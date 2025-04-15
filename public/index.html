@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Node.js Website</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: #333;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .navbar a:hover {
+      background-color: #555;
+    }
+    .navbar .saved-games {
+      margin-left: auto;
+      margin-right: 1in;
+    }
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin-top: 60px; /* Offset for navbar */
+    }
+    .swipe-box {
+      width: 300px;
+      height: 400px;
+      background-color: white;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      position: relative;
+    }
+    .swipe-image {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .swipe-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 5px;
+    }
+    .left-button {
+      left: 10px;
+    }
+    .right-button {
+      right: 10px;
+    }
+    .like-circle, .no-like-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+    }
+    .like-circle {
+      background-color: green;
+      right: -70px;
+    }
+    .no-like-circle {
+      background-color: red;
+      left: -70px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#action">Action</a>
+    <a href="#adventure">Adventure</a>
+    <a href="#sports">Sports</a>
+    <a href="#rpg">RPG</a>
+    <a href="#strategy">Strategy</a>
+    <a href="#saved-games" class="saved-games">Saved Games</a>
+  </div>
+  <div class="content">
+    <div class="swipe-box">
+      <div class="no-like-circle">No</div>
+      <button class="swipe-button left-button">&lt;</button>
+      <picture>
+        <source srcset="lebronmaid-small.jpeg" media="(max-width: 600px)">
+        <source srcset="lebronmaid-medium.jpeg" media="(max-width: 1200px)">
+        <img src="lebronmaid.jpeg" alt="Swipeable Content" class="swipe-image">
+      </picture>
+      <button class="swipe-button right-button">&gt;</button>
+      <div class="like-circle">Yes</div>
+    </div>
+  </div>
+</body>
+</html>
