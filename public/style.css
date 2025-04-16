@@ -2,7 +2,7 @@
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 300px; /* changes the size of the image */ 
+    width: 150px; /* changes the size of the image */ 
     z-index: 10; 
   }
   
