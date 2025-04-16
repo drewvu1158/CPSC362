@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .weather-details {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 300px;
+    }
+    .weather-details h2 {
+      margin-bottom: 20px;
+    }
+    .weather-details p {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="weather-details">
+    <h2 id="city-name">City</h2>
+    <p id="temperature">Temperature: </p>
+    <p id="weather">Weather: </p>
+    <p id="humidity">Humidity: </p>
+    <p id="wind-speed">Wind Speed: </p>
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">Back</button>
+  </div>
+  <script>
+    // Parse query parameters
+    const params = new URLSearchParams(window.location.search);
+    const city = params.get('city');
+    const temp = params.get('temp');
+    const weather = params.get('weather');
+    const humidity = params.get('humidity');
+    const wind = params.get('wind');
+
+    // Populate the weather details
+    document.getElementById('city-name').textContent = city;
+    document.getElementById('temperature').textContent = `Temperature: ${temp}°C`;
+    document.getElementById('weather').textContent = `Weather: ${weather}`;
+    document.getElementById('humidity').textContent = `Humidity: ${humidity}%`;
+    document.getElementById('wind-speed').textContent = `Wind Speed: ${wind} m/s`;
+
+    function goBack() {
+      window.location.href = '/index.html';
+    }
+  </script>
+</body>
+</html>

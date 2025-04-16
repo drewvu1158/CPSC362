@@ -63,7 +63,7 @@
   </div>
   <script>
     async function getWeather() {
-      const city = document.getElementById('city').value;
+      const city = document.getElementById('city').value || 'Unknown City'; // Default to 'Unknown City' if input is empty
       const weatherInfo = document.getElementById('weather-info');
       weatherInfo.innerHTML = 'Loading...';
 
@@ -73,13 +73,28 @@
           throw new Error('City not found');
         }
         const data = await response.json();
-        weatherInfo.innerHTML = `
-          <p><strong>${data.name}</strong></p>
-          <p>Temperature: ${data.main.temp}°C</p>
-          <p>Weather: ${data.weather[0].description}</p>
-        `;
+
+        // Redirect to the new page with weather data as query parameters
+        const queryParams = new URLSearchParams({
+          city: data.name,
+          temp: data.main.temp,
+          weather: data.weather[0].description,
+          humidity: data.main.humidity,
+          wind: data.wind.speed
+        }).toString();
+
+        window.location.href = `/weather-details.html?${queryParams}`;
       } catch (error) {
-        weatherInfo.innerHTML = `<p style="color: red;">${error.message}</p>`;
+        // Redirect to the weather details page with default values if an error occurs
+        const queryParams = new URLSearchParams({
+          city: city,
+          temp: 'N/A',
+          weather: 'N/A',
+          humidity: 'N/A',
+          wind: 'N/A'
+        }).toString();
+
+        window.location.href = `/weather-details.html?${queryParams}`;
       }
     }
 
