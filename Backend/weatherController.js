@@ -1,6 +1,6 @@
 // Decide how to handle requests (e.g., get weather data).
 
-const weatherService = require('../services/weatherService');
+const weatherService = require('./weatherService');
 
 exports.getWeather = async (req, res) => {
     const { city, unit } = req.query;

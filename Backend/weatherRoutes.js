@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const weatherController = require('../controllers/weatherController');
+const weatherController = require('./weatherController');
 
 router.get('/weather', weatherController.getWeather); // Maps '/weather' to controller method
 

@@ -2,7 +2,7 @@
 
 const express = require('express');
 const cors = require('cors');
-const weatherRoutes = require('./routes/weatherRoutes');
+const weatherRoutes = require('./weatherRoutes');
 
 const app = express();
 app.use(cors()); // Allow cross-origin requests
