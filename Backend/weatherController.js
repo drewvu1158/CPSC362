@@ -1,13 +1,25 @@
-// Decide how to handle requests (e.g., get weather data).
-
 const weatherService = require('./weatherService');
 
 exports.getWeather = async (req, res) => {
-    const { city, unit } = req.query;
-    try {
-        const data = await weatherService.fetchWeather(city, unit);
-        res.json(data); // Sends the weather data and clothing suggestion
-    } catch (error) {
-        res.status(500).json({ message: 'Error fetching weather data.' });
+  const city = req.query.city;
+  const unit = req.query.unit || 'metric';
+
+  console.log("City requested:", city); // ✅ Log the city being requested
+
+  try {
+    const weatherData = await weatherService.fetchWeather(city, unit);
+
+    if (!weatherData || !weatherData.temperature) {
+      console.warn("Missing or incomplete weather data:", weatherData);
+      return res.status(500).json({ error: "Incomplete weather data received from API" });
     }
+
+    res.json(weatherData);
+  } catch (error) {
+    console.error("Backend error:", error.message); // ✅ Show root cause
+    res.status(500).json({
+      error: "Failed to retrieve weather data",
+      details: error.message
+    });
+  }
 };
