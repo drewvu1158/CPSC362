@@ -14,20 +14,30 @@ exports.fetchWeather = async (city, unit = 'metric') => {
         throw new Error(data.message || "Invalid weather data received");   // Updated to handle API error + file error
     }
 
+    const weatherCondition = data.weather && data.weather[0] ? data.weather[0].main.toLowerCase() : null;
 
     // Return processed weather data
     return {
         city: data.name,                                            // Added city
         temperature: data.main.temp,
         humidity: data.main.humidity,
-        clothingSuggestion: suggestClothing(data.main.temp, unit),  // Clothing suggestion logic
+        weatherCondition,                                          // Include weather condition
+        clothingSuggestion: suggestClothing(data.main.temp, unit, weatherCondition),  // Clothing suggestion logic
     };
 };
 
-// Function to suggest clothing based on temperature
-const suggestClothing = (temp, unit) => {
+// Function to suggest clothing based on temperature and weather condition
+const suggestClothing = (temp, unit, weatherCondition) => {
     let tempInCelsius = unit === 'metric' ? temp : (temp - 32) * 5/9;  // Convert Fahrenheit to Celsius if needed
 
+    if (weatherCondition === 'rain') {
+        return 'It is raining. Wear a waterproof jacket and carry an umbrella.';
+    }
+    if (weatherCondition === 'snow') {
+        return 'It is snowing. Wear a heavy coat, gloves, and boots.';
+    }
+
+    // Default suggestions based on temperature
     if (tempInCelsius < 5) return 'Wear a heavy coat and warm clothes.';
     if (tempInCelsius < 15) return 'Wear a jacket or layers.';
     if (tempInCelsius < 20) return 'Wear a light jacket or sweater.';
