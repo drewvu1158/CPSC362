@@ -1,5 +1,4 @@
 # Ignore files that shouldn't be shared (e.g., .env).
 
 node_modules/
-.env
 *.log
