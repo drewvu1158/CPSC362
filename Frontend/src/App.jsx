@@ -37,7 +37,14 @@ export default function App() {
           <p><strong>Feels Like:</strong> {weather.feelsLike}°F</p>
           <p><strong>Humidity:</strong> {weather.humidity}%</p>
           <p><strong>Wind Speed:</strong> {weather.windSpeed} m/s</p>
-          <p><strong>Condition:</strong> {weather.weatherCondition}</p>
+          <p>
+            <strong>Condition:</strong> {weather.weatherCondition}{" "}
+            {weather.weatherCondition.toLowerCase().includes("clear") && "🌞"}
+            {weather.weatherCondition.toLowerCase().includes("cloud") && "☁️"}
+            {weather.weatherCondition.toLowerCase().includes("rain") && "🌧️"}
+            {weather.weatherCondition.toLowerCase().includes("snow") && "❄️"}
+            {weather.weatherCondition.toLowerCase().includes("storm") && "⛈️"}
+          </p>
           <p><strong>Clothing Suggestion:</strong> {weather.clothingSuggestion}</p>
           <p><strong>Tips:</strong> {weather.tips}</p>
         </div>
