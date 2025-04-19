@@ -7,12 +7,12 @@ export default function App() {
   const getWeather = async () => {
     if (!city) return;
     try {
-      const res = await fetch(`http://localhost:3000/weather?city=${encodeURIComponent(city)}&unit=imperial`);
-      const data = await res.json();
-      setWeather(data);
+        const res = await fetch(`http://localhost:3000/weather?city=${encodeURIComponent(city)}&unit=imperial`);
+        const data = await res.json();
+        setWeather(data); // Includes feelsLike, clothingSuggestion, and tips
     } catch (err) {
-      console.error(err);
-      alert("Failed to fetch weather.");
+        console.error(err);
+        alert("Failed to fetch weather.");
     }
   };
 
@@ -34,8 +34,12 @@ export default function App() {
         <div className="mt-6 bg-white shadow rounded p-4 max-w-md w-full">
           <p><strong>City:</strong> {weather.city || city}</p>
           <p><strong>Temperature:</strong> {weather.temperature}°F</p>
+          <p><strong>Feels Like:</strong> {weather.feelsLike}°F</p>
           <p><strong>Humidity:</strong> {weather.humidity}%</p>
-          <p><strong>Suggestion:</strong> {weather.clothingSuggestion}</p>
+          <p><strong>Wind Speed:</strong> {weather.windSpeed} m/s</p>
+          <p><strong>Condition:</strong> {weather.weatherCondition}</p>
+          <p><strong>Clothing Suggestion:</strong> {weather.clothingSuggestion}</p>
+          <p><strong>Tips:</strong> {weather.tips}</p>
         </div>
       )}
     </div>
