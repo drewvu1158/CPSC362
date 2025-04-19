@@ -1,15 +1,12 @@
 {
-  "name": "my-website",
+  "name": "weather-app",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd Backend && node server.js",
+    "client": "cd Frontend && npm run dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "express": "^5.1.0"
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
