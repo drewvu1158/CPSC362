@@ -31,13 +31,19 @@ exports.fetchWeather = async (city, unit = 'metric') => {
 
 // Function to suggest clothing based on temperature and weather condition
 const suggestClothing = (temp, unit, weatherCondition) => {
-    let tempInCelsius = unit === 'metric' ? temp : (temp - 32) * 5/9;  // Convert Fahrenheit to Celsius if needed
+    let tempInCelsius = unit === 'metric' ? temp : (temp - 32) * 5 / 9; // Convert Fahrenheit to Celsius if needed
 
+    if (weatherCondition === 'hard rain') {
+        return 'It is raining heavily. Wear a waterproof jacket, carry an umbrella, and wear waterproof shoes.';
+    }
     if (weatherCondition === 'rain') {
         return 'It is raining. Wear a waterproof jacket and carry an umbrella.';
     }
     if (weatherCondition === 'snow') {
         return 'It is snowing. Wear a heavy coat, gloves, and boots.';
+    }
+    if (weatherCondition === 'clear clouds') {
+        return 'It is partly cloudy. Wear light clothing, but carry a jacket just in case.';
     }
 
     // Default suggestions based on temperature
