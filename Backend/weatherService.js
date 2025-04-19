@@ -51,7 +51,7 @@ const suggestClothing = (temp, unit, weatherCondition) => {
     if (tempInCelsius < 15) return 'Wear a jacket or layers.';
     if (tempInCelsius < 20) return 'Wear a light jacket or sweater.';
     if (tempInCelsius < 25) return 'Wear light clothing, like a t-shirt or blouse.';
-    return 'Wear very light clothing, like shorts and a tank top, and stay hydrated.';
+    return 'Wear very light clothing, like shorts and a tank top.';
 };
 
 // Function to generate tips based on temperature and weather condition
