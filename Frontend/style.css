@@ -143,3 +143,34 @@ body {
   .weather-info {
     margin-top: 20px;
   }
+
+.title-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.explore-box {
+  padding: 10px 20px;
+  border: 2px solid transparent; /* Transparent border to avoid clashing with the gradient */
+  border-radius: 10px;
+  background: linear-gradient(to right, #007bff, #00c6ff); /* Gradient background */
+  color: white; /* White text for better contrast */
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  display: inline-block;
+  font-weight: bold;
+}

@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <h1 className="text-2xl font-bold mb-4">Weather Outfit Recommender</h1>
+      <h2 className="text-2xl font-bold mb-4 explore-box">Let's Explore!</h2>
       <input
         className="border p-2 rounded w-full max-w-xs mb-2"
         type="text"
