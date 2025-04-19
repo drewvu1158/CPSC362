@@ -25,7 +25,7 @@ exports.fetchWeather = async (city, unit = 'metric') => {
         windSpeed: data.wind.speed,                                 // Added windSpeed
         weatherCondition,                                          // Include weather condition
         clothingSuggestion: suggestClothing(data.main.temp, unit, weatherCondition),  // Clothing suggestion logic
-        tips: generateTips(data.main.temp, weatherCondition),       // Added tips logic
+        tips: generateTips(data.main.temp, weatherCondition, unit), // Added tips logic
     };
 };
 
@@ -55,33 +55,39 @@ const suggestClothing = (temp, unit, weatherCondition) => {
 };
 
 // Function to generate tips based on temperature and weather condition
-const generateTips = (temp, weatherCondition) => {
+const generateTips = (temp, weatherCondition, unit) => {
+    // Convert temperature to Celsius if needed
+    let tempInCelsius = unit === 'metric' ? temp : (temp - 32) * 5 / 9; // Convert Fahrenheit to Celsius if unit is not metric
     let tips = '';
-
-    // Hot weather tips
-    if (temp > 30) {
-        tips += 'It is very hot. Stay hydrated and avoid prolonged exposure to the sun. ';
-        tips += 'It is sunny. Wear sunscreen and sunglasses to protect yourself. '; // Sunscreen advice only for hot days
-    }
 
     // Clear weather tips
     if (weatherCondition === 'clear') {
-        tips += 'It’s a great day for outdoor activities. Enjoy the fresh air! ';
-    }
-
+        tips = 'It’s a great day for outdoor activities. Enjoy the fresh air!';
+    } 
+    // Cloudy weather tips
+    else if (weatherCondition === 'clouds') {
+        tips = 'It is cloudy. A perfect time to relax indoors or take a calm walk outside.';
+    } 
+    // Mist tips
+    else if (weatherCondition === 'mist') {
+        tips = 'It is misty. Be cautious while driving or walking as visibility may be reduced.';
+    } 
+    // Hot weather tips
+    else if (tempInCelsius > 30) {
+        tips = 'It is very hot. Stay hydrated and avoid prolonged exposure to the sun. Wear sunscreen and sunglasses to protect yourself.';
+    } 
     // Cold weather tips
-    if (temp < 5) {
-        tips += 'It is very cold. Stay indoors if possible and avoid prolonged exposure to the cold. ';
-        tips += 'Drink warm beverages to stay warm and maintain your body temperature. ';
-    }
-    if (weatherCondition === 'snow') {
-        tips += 'Be cautious of slippery surfaces and drive carefully. ';
+    else if (tempInCelsius < 5) {
+        tips = 'It is very cold. Stay indoors if possible and avoid prolonged exposure to the cold. Drink warm beverages to stay warm.';
+    } 
+    // Snow tips
+    else if (weatherCondition === 'snow') {
+        tips = 'Be cautious of slippery surfaces and drive carefully.';
+    } 
+    // Rain tips
+    else if (weatherCondition === 'rain') {
+        tips = 'It is raining. Be cautious of slippery surfaces and puddles while walking or driving.';
     }
 
-    // Rainy weather tips
-    if (weatherCondition === 'rain') {
-        tips += 'It is raining. Be cautious of slippery surfaces and puddles while walking or driving. ';
-    }
-
-    return tips.trim();
+    return tips;
 };
