@@ -38,7 +38,8 @@ export default function App() {
           <p><strong>Humidity:</strong> {weather.humidity}%</p>
           <p><strong>Wind Speed:</strong> {weather.windSpeed} m/s</p>
           <p>
-            <strong>Condition:</strong> {weather.weatherCondition}{" "}
+            <strong>Condition:</strong>{" "}
+            {weather.weatherCondition.charAt(0).toUpperCase() + weather.weatherCondition.slice(1)}{" "}
             {weather.weatherCondition.toLowerCase().includes("clear") && "🌞"}
             {weather.weatherCondition.toLowerCase().includes("cloud") && "☁️"}
             {weather.weatherCondition.toLowerCase().includes("rain") && "🌧️"}
